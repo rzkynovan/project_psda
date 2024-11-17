@@ -43,6 +43,8 @@ If your frontend URL needs to be dynamic, you can configure it using `.env.local
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET= # generate using: openssl rand -base64 32
 ```
 
 ---

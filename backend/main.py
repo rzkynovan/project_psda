@@ -5,7 +5,12 @@ from database import SessionLocal, engine
 import models
 from schemas import UserCreate, UserLogin
 from utils.hasher import CustomHasher
+from dotenv import load_dotenv
+import os
 
+
+ALLOW_ORIGINS = os.getenv("ALLOW_ORIGINS", "http://localhost:3000") 
+SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 # Create tables
 models.Base.metadata.create_all(bind=engine)
 
@@ -13,7 +18,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3001"],  # Frontend URL
+    allow_origins=[ALLOW_ORIGINS],  # Frontend URL
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
